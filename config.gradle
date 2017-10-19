@@ -1,0 +1,15 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+ext{
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.2",
+            minSdkVersion    : 14,
+            targetSdkVersion : 25
+    ]
+    dependencies = [
+            dagger : "2.10",
+    ]
+
+    //Version
+    supportLibrary = "26.1.0"
+}
