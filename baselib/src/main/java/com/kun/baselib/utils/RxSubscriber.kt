@@ -45,8 +45,12 @@ abstract class RxSubscriber<T : BaseResponse<*>> : DisposableSubscriber<T>() {
         if (t == null) {
             toast("服务器访问失败")
         } else {
-            val errorMsg = ErrorCode.getErrorMsg(t.code)
-            toast(errorMsg ?: t.info?:"")
+            var errorMsg : String? = ErrorCode.getErrorMsg(t.code)
+            if (errorMsg == null){
+                toast(t.info?:"")
+            }else{
+                toast(errorMsg)
+            }
         }
     }
 

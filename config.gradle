@@ -7,7 +7,7 @@ ext{
             targetSdkVersion : 25
     ]
     dependencies = [
-            dagger : "2.10",
+            dagger : "2.11",
     ]
 
     //Version

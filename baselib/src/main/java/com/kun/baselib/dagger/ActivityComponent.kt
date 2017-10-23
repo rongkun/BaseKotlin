@@ -7,7 +7,7 @@ import dagger.Component
  * @author kun
  * @date 2017/10/18
  */
-@PerActivity
+@PerView
 @Component(dependencies = arrayOf(AppComponent :: class),modules = arrayOf(ActivityModule :: class))
 interface ActivityComponent{
     fun provideActivity() : Activity

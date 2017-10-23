@@ -1,6 +1,6 @@
 package com.kun.baselib.dagger
 
-import android.app.Activity
+import android.support.v4.app.Fragment
 import dagger.Module
 import dagger.Provides
 
@@ -9,8 +9,8 @@ import dagger.Provides
  * @date 2017/10/18
  */
 @Module
-class ActivityModule(private var activity: Activity){
+class FragmentModule(private var fragment: Fragment){
     @Provides
     @PerView
-    fun activity() = activity
+    fun fragment() = fragment
 }

@@ -4,6 +4,9 @@ import android.app.Application
 import com.bugtags.library.Bugtags
 import com.kun.baselib.BuildConfig
 import com.kun.baselib.config.Constants
+import com.kun.baselib.dagger.AppComponent
+import com.kun.baselib.dagger.AppModule
+import com.kun.baselib.dagger.DaggerAppComponent
 
 /**
  * @author kun
@@ -12,8 +15,10 @@ import com.kun.baselib.config.Constants
 class BaseApplication : Application() {
 
     companion object {
-        lateinit var instance: BaseApplication
+        lateinit var instance : BaseApplication
             private set
+        lateinit var appConponent : AppComponent
+
     }
     override fun onCreate() {
         super.onCreate()
@@ -24,5 +29,9 @@ class BaseApplication : Application() {
             //release
             Bugtags.start(Constants.BUGTAGS_APPKEY_LIVE, this, Bugtags.BTGInvocationEventNone)
         }
+        initializeInjector()
+    }
+    fun initializeInjector(){
+        appConponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
     }
 }
