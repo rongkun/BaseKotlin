@@ -14,7 +14,7 @@ import java.net.UnknownHostException
 abstract class RxSubscriber<T : BaseResponse<*>> : DisposableSubscriber<T>() {
 
     override fun onNext(t: T?) {
-        if (t != null && t.code === 1) {
+        if (t != null && t.status == 200) {
             onSuccess(t)
         } else {
             onFail(t)
@@ -45,7 +45,7 @@ abstract class RxSubscriber<T : BaseResponse<*>> : DisposableSubscriber<T>() {
         if (t == null) {
             toast("服务器访问失败")
         } else {
-            var errorMsg : String? = ErrorCode.getErrorMsg(t.code)
+            var errorMsg : String? = ErrorCode.getErrorMsg(t.status)
             if (errorMsg == null){
                 toast(t.info?:"")
             }else{
