@@ -27,7 +27,7 @@ object RxHelper {
      * @return 作为参数用于 {@link Observable#compose(ObservableTransformer)} 中
      */
     fun <T> io_computation() = FlowableTransformer<T, T> { upstream ->
-        upstream!!.subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.computation())
+        upstream!!.subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
     }
 }

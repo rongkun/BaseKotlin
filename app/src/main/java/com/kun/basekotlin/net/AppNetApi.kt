@@ -12,5 +12,5 @@ import retrofit2.http.Query
  */
 interface AppNetApi{
     @GET("open/api/weather/json.shtml?")
-    abstract fun getWeather(@Query("city") city: String): Flowable<BaseResponse<WeatherResponse>>
+    fun getWeather(@Query("city") city: String): Flowable<BaseResponse<WeatherResponse>>
 }
