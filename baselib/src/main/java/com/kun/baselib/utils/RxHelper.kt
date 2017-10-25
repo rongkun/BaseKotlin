@@ -21,7 +21,6 @@ object RxHelper {
     }
 
     /**
-     * 将线程调度进行封装，在io线程观察，在computation线程订阅
      *
      * @param <T> 当前观察者的类型
      * @return 作为参数用于 {@link Observable#compose(ObservableTransformer)} 中
