@@ -8,12 +8,13 @@
     <TextView
         android:id="@+id/tvTest"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
     <Button
         android:id="@+id/btTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="获取温度"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:layout_centerInParent="true"/>

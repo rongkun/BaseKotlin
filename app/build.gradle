@@ -9,12 +9,12 @@ apply plugin: 'kotlin-kapt'
 def config = rootProject.ext
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion config.android.compileSdkVersion
+    buildToolsVersion config.android.buildToolsVersion
     defaultConfig {
         applicationId "com.kun.basekotlin"
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion config.android.minSdkVersion
+        targetSdkVersion config.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

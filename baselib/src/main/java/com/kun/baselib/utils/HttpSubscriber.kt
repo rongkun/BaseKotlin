@@ -11,7 +11,7 @@ import java.net.UnknownHostException
  * @author kun
  * @date 2017/10/19
  */
-abstract class RxSubscriber<T : BaseResponse<*>> : DisposableSubscriber<T>() {
+abstract class HttpSubscriber<T : BaseResponse<*>> : DisposableSubscriber<T>() {
 
     override fun onNext(t: T?) {
         if (t != null && t.status == 200) {
@@ -45,7 +45,7 @@ abstract class RxSubscriber<T : BaseResponse<*>> : DisposableSubscriber<T>() {
         if (t == null) {
             toast("服务器访问失败")
         } else {
-            var errorMsg : String? = ErrorCode.getErrorMsg(t.status)
+            val errorMsg : String? = ErrorCode.getErrorMsg(t.status)
             if (errorMsg == null){
                 toast(t.info?:"")
             }else{

@@ -34,7 +34,7 @@ class DemoActivity : BaseActivity(),DemoContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo)
-        tvTest.text = "Hello World"
+        tvTest.text = "Hello Kotlin"
         btTest.setOnClickListener { mPresenter.getWeather("广州") }
         mPresenter.send()
     }

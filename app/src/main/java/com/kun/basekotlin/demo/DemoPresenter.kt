@@ -4,7 +4,7 @@ import com.kun.basekotlin.bean.WeatherResponse
 import com.kun.basekotlin.net.AppNetApi
 import com.kun.baselib.base.BaseResponse
 import com.kun.baselib.utils.RxHelper
-import com.kun.baselib.utils.RxSubscriber
+import com.kun.baselib.utils.HttpSubscriber
 import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.android.ActivityEvent
 import javax.inject.Inject
@@ -20,7 +20,7 @@ class DemoPresenter
     override fun getWeather(city: String) {
         mAppNetApi.getWeather(city).compose(mlifecycleProvider.bindToLifecycle())
                 .compose(RxHelper.io_main())
-                .subscribe(object : RxSubscriber<BaseResponse<WeatherResponse>>() {
+                .subscribe(object : HttpSubscriber<BaseResponse<WeatherResponse>>() {
                     override fun onSuccess(t: BaseResponse<WeatherResponse>) {
                         mView.getWeatherSuccess(t.data!!)
                     }
