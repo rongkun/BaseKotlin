@@ -3,10 +3,8 @@ package com.kun.basekotlin.demo
 import com.kun.basekotlin.bean.WeatherResponse
 import com.kun.basekotlin.net.AppNetApi
 import com.kun.baselib.base.BaseResponse
-import com.kun.baselib.utils.RxHelper
 import com.kun.baselib.utils.HttpSubscriber
-import com.trello.rxlifecycle2.LifecycleProvider
-import com.trello.rxlifecycle2.android.ActivityEvent
+import com.kun.baselib.utils.RxHelper
 import javax.inject.Inject
 
 /**
@@ -14,11 +12,11 @@ import javax.inject.Inject
  * @date 2017/10/20
  */
 class DemoPresenter
-@Inject constructor(val mView: DemoContract.View,
-                    val mlifecycleProvider: LifecycleProvider<ActivityEvent>,
-                    val mAppNetApi: AppNetApi) : DemoContract.Present {
+@Inject constructor(private var mView: DemoContract.View,
+                    private val mAppNetApi: AppNetApi) : DemoContract.Present {
+
     override fun getWeather(city: String) {
-        mAppNetApi.getWeather(city).compose(mlifecycleProvider.bindToLifecycle())
+        mAppNetApi.getWeather(city).compose(mView.getLifecycleProvider().bindToLifecycle())
                 .compose(RxHelper.io_main())
                 .subscribe(object : HttpSubscriber<BaseResponse<WeatherResponse>>() {
                     override fun onSuccess(t: BaseResponse<WeatherResponse>) {
@@ -27,10 +25,6 @@ class DemoPresenter
                 })
     }
 
-    @Inject
-    fun setPresenter(){
-        mView.setPresenter(this)
-    }
     override fun send() {
         mView.success()
     }

@@ -1,12 +1,9 @@
 package com.kun.basekotlin.demo
 
 import android.os.Bundle
-import com.kun.basekotlin.R
 import com.kun.basekotlin.bean.WeatherResponse
 import com.kun.baselib.base.BaseActivity
-import com.kun.baselib.base.BaseApplication
 import com.kun.baselib.utils.ToastUtil
-import kotlinx.android.synthetic.main.activity_demo.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import javax.inject.Inject
@@ -20,15 +17,12 @@ class DemoActivity : BaseActivity(),DemoContract.View {
     }
 
     @Inject
-    internal lateinit var mPresenter : DemoPresenter
-    override fun setPresenter(mPresenter: DemoPresenter) {
-        this.mPresenter = mPresenter
-    }
+    internal lateinit var mPresenter : DemoContract.Present
 
     override fun daggerInit() {
         DaggerDemoComponent.builder()
-                .appComponent(BaseApplication.appConponent)
-                .demoModule(DemoModule(this,this))
+                .appComponent(getAppComponent())
+                .demoModule(DemoModule(this))
                 .build()
                 .inject(this)
     }
@@ -42,6 +36,7 @@ class DemoActivity : BaseActivity(),DemoContract.View {
 //        tvTest.text = "Hello Kotlin"
 //        btTest.setOnClickListener { }
         mPresenter.send()
+        //anko布局写法
         relativeLayout {
             textView ("hello anko"){
                 id = ID_TEXT

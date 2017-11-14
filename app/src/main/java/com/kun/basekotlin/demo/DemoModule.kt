@@ -1,7 +1,5 @@
 package com.kun.basekotlin.demo
 
-import com.trello.rxlifecycle2.LifecycleProvider
-import com.trello.rxlifecycle2.android.ActivityEvent
 import dagger.Module
 import dagger.Provides
 
@@ -10,9 +8,9 @@ import dagger.Provides
  * @date 2017/10/20
  */
 @Module
-class DemoModule(private var mView: DemoContract.View,private var lifecycleProvider: LifecycleProvider<ActivityEvent>)  {
+class DemoModule(private var mView: DemoContract.View)  {
     @Provides
     fun providesView()  = mView
     @Provides
-    fun provideLifecycleProvider() = lifecycleProvider
+    fun providesPresent(demoPresenter: DemoPresenter) : DemoContract.Present = demoPresenter
 }

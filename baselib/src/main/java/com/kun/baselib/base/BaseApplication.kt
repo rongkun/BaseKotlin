@@ -17,7 +17,7 @@ class BaseApplication : Application() {
     companion object {
         lateinit var instance : BaseApplication
             private set
-        lateinit var appConponent : AppComponent
+        lateinit var appComponent: AppComponent
 
     }
     override fun onCreate() {
@@ -32,6 +32,6 @@ class BaseApplication : Application() {
         initializeInjector()
     }
     fun initializeInjector(){
-        appConponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
+        appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
     }
 }

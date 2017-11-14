@@ -2,6 +2,8 @@ package com.kun.baselib.base
 
 import android.content.Context
 import android.os.Bundle
+import com.trello.rxlifecycle2.LifecycleProvider
+import com.trello.rxlifecycle2.android.ActivityEvent
 import com.trello.rxlifecycle2.components.RxActivity
 
 /**
@@ -22,4 +24,10 @@ BaseActivityView{
     }
 
     override fun getContext() : Context? = mContext
+
+    override fun getLifecycleProvider(): LifecycleProvider<ActivityEvent> {
+        return this
+    }
+
+    protected fun getAppComponent() = BaseApplication.appComponent
 }
