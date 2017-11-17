@@ -10,8 +10,7 @@ import com.trello.rxlifecycle2.components.RxActivity
  * @author kun
  * @date 2017/10/20
  */
-abstract class BaseActivity : RxActivity(),
-BaseActivityView{
+abstract class BaseActivity : RxActivity(), BaseActivityView{
     protected var mActivity : BaseActivity? = null
     protected var mContext : Context? = null
     abstract fun daggerInit()
@@ -23,7 +22,7 @@ BaseActivityView{
         daggerInit()
     }
 
-    override fun getContext() : Context? = mContext
+    override fun getActivity() : BaseActivity? = mActivity
 
     override fun getLifecycleProvider(): LifecycleProvider<ActivityEvent> {
         return this

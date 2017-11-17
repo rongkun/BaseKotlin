@@ -1,6 +1,5 @@
 package com.kun.baselib.base
 
-import android.content.Context
 import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.android.ActivityEvent
 
@@ -9,7 +8,7 @@ import com.trello.rxlifecycle2.android.ActivityEvent
  * @date 2017/10/20
  */
 interface BaseActivityView{
-    fun getContext() : Context?
+    fun getActivity() : BaseActivity?
     fun finish()
     fun getLifecycleProvider() : LifecycleProvider<ActivityEvent>
 }

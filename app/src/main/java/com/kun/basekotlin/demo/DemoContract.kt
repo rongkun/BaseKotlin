@@ -2,6 +2,7 @@ package com.kun.basekotlin.demo
 
 import com.kun.basekotlin.bean.WeatherResponse
 import com.kun.baselib.base.BaseActivityView
+import com.kun.baselib.base.BasePresenter
 
 /**
  * @author kun
@@ -12,7 +13,7 @@ class DemoContract{
         fun success()
         fun getWeatherSuccess(weatherResponse: WeatherResponse)
     }
-    interface Present {
+    interface Present : BasePresenter{
         fun send()
         fun getWeather(city : String)
     }

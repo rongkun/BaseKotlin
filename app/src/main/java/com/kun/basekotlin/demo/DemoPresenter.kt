@@ -12,20 +12,23 @@ import javax.inject.Inject
  * @date 2017/10/20
  */
 class DemoPresenter
-@Inject constructor(private var mView: DemoContract.View,
-                    private val mAppNetApi: AppNetApi) : DemoContract.Present {
+@Inject constructor(var mView : DemoContract.View?,
+                    private val mAppNetApi: AppNetApi) : DemoContract.Present{
+    override fun destroyView() {
+        mView = null
+    }
 
     override fun getWeather(city: String) {
-        mAppNetApi.getWeather(city).compose(mView.getLifecycleProvider().bindToLifecycle())
+        mAppNetApi.getWeather(city).compose(mView?.getLifecycleProvider()?.bindToLifecycle())
                 .compose(RxHelper.io_main())
                 .subscribe(object : HttpSubscriber<BaseResponse<WeatherResponse>>() {
                     override fun onSuccess(t: BaseResponse<WeatherResponse>) {
-                        mView.getWeatherSuccess(t.data!!)
+                        mView?.getWeatherSuccess(t.data!!)
                     }
                 })
     }
 
     override fun send() {
-        mView.success()
+        mView?.success()
     }
 }

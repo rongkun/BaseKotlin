@@ -55,4 +55,9 @@ class DemoActivity : BaseActivity(),DemoContract.View {
             }
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.destroyView()
+    }
 }

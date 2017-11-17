@@ -31,6 +31,9 @@ object ToastUtil{
     fun toastLimit(msg: String) {
         toastLimit(BaseApplication.instance.baseContext, msg)
     }
+    fun toastLimit(strId: Int) {
+        toastLimit(BaseApplication.instance.baseContext, strId)
+    }
 
     fun toastLimit(ct: Context, StringId: Int) {
         val currentTime = System.currentTimeMillis()

@@ -1,6 +1,7 @@
 package com.kun.baselib.utils
 
 import com.kun.baselib.Net.ErrorCode
+import com.kun.baselib.R
 import com.kun.baselib.base.BaseResponse
 import io.reactivex.subscribers.DisposableSubscriber
 import java.net.ConnectException
@@ -14,7 +15,7 @@ import java.net.UnknownHostException
 abstract class HttpSubscriber<T : BaseResponse<*>> : DisposableSubscriber<T>() {
 
     override fun onNext(t: T?) {
-        if (t != null && t.status == 200) {
+        if (200 == t?.status) {
             onSuccess(t)
         } else {
             onFail(t)
@@ -24,14 +25,14 @@ abstract class HttpSubscriber<T : BaseResponse<*>> : DisposableSubscriber<T>() {
     override fun onError(e: Throwable) {
         e.printStackTrace()
         if (e is UnknownHostException) {
-            toast("请检查您的网络设置")
+            toast(R.string.base_check_network_setting)
             noNet()
         } else if (e is SocketTimeoutException) {
-            toast("连接超时")
+            toast(R.string.base_connect_overtime)
         } else if (e is ConnectException) {
-            toast("连接出错")
+            toast(R.string.base_connect_error)
         } else {
-            ToastUtil.toastLimit("访问出错")
+            ToastUtil.toastLimit(R.string.base_access_fail)
         }
     }
 
@@ -43,14 +44,10 @@ abstract class HttpSubscriber<T : BaseResponse<*>> : DisposableSubscriber<T>() {
 
     fun onFail(t: T?) {
         if (t == null) {
-            toast("服务器访问失败")
+            toast(R.string.base_server_error)
         } else {
             val errorMsg : String? = ErrorCode.getErrorMsg(t.status)
-            if (errorMsg == null){
-                toast(t.info?:"")
-            }else{
-                toast(errorMsg)
-            }
+            toast(errorMsg ?: t.info ?: "")
         }
     }
 
@@ -58,5 +55,8 @@ abstract class HttpSubscriber<T : BaseResponse<*>> : DisposableSubscriber<T>() {
 
     private fun toast(str: String) {
         ToastUtil.toastLimit(str)
+    }
+    private fun toast(strId: Int) {
+        ToastUtil.toastLimit(strId)
     }
 }
