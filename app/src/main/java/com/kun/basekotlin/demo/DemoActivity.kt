@@ -34,7 +34,7 @@ class DemoActivity : BaseActivity(),DemoContract.View {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_demo)
 //        tvTest.text = "Hello Kotlin"
-//        btTest.setOnClickListener { }
+//        btTest.setOnClickListener { } 你
         mPresenter.send()
         //anko布局写法
         relativeLayout {
