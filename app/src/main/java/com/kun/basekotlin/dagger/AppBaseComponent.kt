@@ -10,8 +10,8 @@ import dagger.Component
  * @date 2017/12/6
  */
 @PerView
-@Component(dependencies = arrayOf(AppComponent::class),
-        modules = arrayOf(AppBaseModule::class))
+@Component(dependencies = [AppComponent::class],
+        modules = [AppBaseModule::class])
 interface AppBaseComponent {
     fun inject(testActivity: TestActivity)
 }

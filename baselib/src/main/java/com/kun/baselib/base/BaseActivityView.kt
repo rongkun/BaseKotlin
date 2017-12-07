@@ -9,6 +9,5 @@ import com.trello.rxlifecycle2.android.ActivityEvent
  */
 interface BaseActivityView{
     fun getActivity() : BaseActivity<*>?
-    fun finish()
     fun getLifecycleProvider() : LifecycleProvider<ActivityEvent>
 }
