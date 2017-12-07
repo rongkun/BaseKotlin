@@ -1,4 +1,4 @@
-package com.kun.basekotlin.base
+package com.kun.basekotlin.dagger
 
 import com.kun.basekotlin.net.AppNetApi
 import com.kun.baselib.dagger.PerView

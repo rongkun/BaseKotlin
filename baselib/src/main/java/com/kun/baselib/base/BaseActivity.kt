@@ -5,13 +5,16 @@ import android.os.Bundle
 import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.android.ActivityEvent
 import com.trello.rxlifecycle2.components.RxActivity
+import javax.inject.Inject
 
 /**
  * @author kun
  * @date 2017/10/20
  */
-abstract class BaseActivity : RxActivity(), BaseActivityView{
-    protected var mActivity : BaseActivity? = null
+abstract class BaseActivity<T : BasePresenter<*>> : RxActivity(), BaseActivityView{
+    @Inject
+    protected lateinit var mPresenter: T
+    protected var mActivity : BaseActivity<T>? = null
     protected var mContext : Context? = null
     abstract fun daggerInit()
 
@@ -22,11 +25,16 @@ abstract class BaseActivity : RxActivity(), BaseActivityView{
         daggerInit()
     }
 
-    override fun getActivity() : BaseActivity? = mActivity
+    override fun getActivity() : BaseActivity<T> = this
 
     override fun getLifecycleProvider(): LifecycleProvider<ActivityEvent> {
         return this
     }
 
     protected fun getAppComponent() = BaseApplication.appComponent
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.destroyView()
+    }
 }

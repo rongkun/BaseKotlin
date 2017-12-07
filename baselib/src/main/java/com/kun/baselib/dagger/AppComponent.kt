@@ -1,6 +1,6 @@
 package com.kun.baselib.dagger
 
-import com.kun.baselib.Net.NetModule
+import com.kun.baselib.net.NetModule
 import com.kun.baselib.base.BaseApplication
 import dagger.Component
 import retrofit2.Retrofit

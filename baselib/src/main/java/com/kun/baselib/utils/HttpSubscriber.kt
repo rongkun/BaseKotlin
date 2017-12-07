@@ -1,6 +1,6 @@
 package com.kun.baselib.utils
 
-import com.kun.baselib.Net.ErrorCode
+import com.kun.baselib.net.ErrorCode
 import com.kun.baselib.R
 import com.kun.baselib.base.BaseResponse
 import io.reactivex.subscribers.DisposableSubscriber
@@ -40,7 +40,7 @@ abstract class HttpSubscriber<T : BaseResponse<*>> : DisposableSubscriber<T>() {
 
     }
 
-    abstract fun onSuccess(t: T)
+    abstract fun onSuccess(response: T)
 
     fun onFail(t: T?) {
         if (t == null) {
